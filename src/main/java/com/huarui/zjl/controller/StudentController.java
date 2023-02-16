@@ -51,6 +51,7 @@ public class StudentController {
         System.out.println("1111111111");
         System.out.println("1111111111");
         System.out.println("1111111111");
+        System.out.println("master test");
         return ResponseEntity.ok(this.studentService.insert(student));
     }
 
