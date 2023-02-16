@@ -54,10 +54,12 @@ public class StudentController {
         System.out.println("master test");
         System.out.println("hot-master test");
         System.out.println("hot-master test");
+        System.out.println("ssh38263472894738297498");
         System.out.println("hot-master test");
         System.out.println("hot-master test");
         System.out.println("hot-master test");
         System.out.println("hot-master test");
+        System.out.println("pull test");
        return ResponseEntity.ok(this.studentService.insert(student));
     }
 
