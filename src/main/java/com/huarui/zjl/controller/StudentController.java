@@ -49,6 +49,8 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<Student> add(@RequestBody Student student) {
         System.out.println("1111111111");
+        System.out.println("1111111111");
+        System.out.println("1111111111");
         return ResponseEntity.ok(this.studentService.insert(student));
     }
 
