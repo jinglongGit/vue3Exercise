@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <script>
+       window.onload=function ( ){new Vue({
+            el:"#app",
+            data:{
+                stuS:[],
+                likeName:''
+            },
+            methods:{
+                queryStudent(){
+                    axios.get("/student").then(resp=>{
+                        this.stuS=resp.data;
+                    })
+                },
+                queryLikeName(){
+                   return  this.stuS.filter(stu=>{
+                        return stu.name.indexOf(this.likeName)!=-1;
+                    });
+                },
+                mydelete(id){
+                    if (confirm("你确认要删除吗?")){
+                        axios.delete("/student/"+id).then(resp=>{
+                            if (resp.data) {
+                                alert("删除成功!");
+                                this.queryStudent();
+                            }
+                        })
+                    }
+                },
+                myupdate(id){
+                    sessionStorage.setItem("id",id);
+                    location.href='update.html';
+                }
+            },
+            mounted(){
+                this.queryStudent();
+            }
+        })};
+    </script>
+</head>
+<body>
+<div id="app">
+    <table border="1" cellspacing="0" cellpadding="0" width="600px" align="center">
+        <caption>
+            <h2>
+                学生管理系统 <br>
+            </h2>
+            姓名查询:<input type="text" v-model="likeName"><br><br>
+            <button type="button" onclick="location.href='insert.html'">添加</button><br><br>
+        </caption>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>sex</th>
+            <th>age</th>
+            <th>weight</th>
+            <th>bri</th>
+            <th>cid</th>
+            <th>操作</th>
+        </tr>
+        <tr v-for="stu in queryLikeName()" :key="stu.id" align="center">
+            <td>{{stu.id}}</td>
+            <td>{{stu.name}}</td>
+            <td>{{stu.sex}}</td>
+            <td>{{stu.age}}</td>
+            <td>{{stu.weight}}</td>
+            <td>{{stu.bri}}</td>
+            <td>{{stu.cid}}</td>
+            <td>
+                <a href="#" @click.prevent="myupdate(stu.id)">修改</a>&nbsp;
+                <a href="#" @click.prevent="mydelete(stu.id)">删除</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
