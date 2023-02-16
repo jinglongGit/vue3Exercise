@@ -55,6 +55,7 @@ public class StudentController {
         System.out.println("hot-master test");
         System.out.println("hot-master test");
         System.out.println("ssh38263472894738297498");
+        System.out.println("你好我是pull下的代码");
         System.out.println("hot-master test");
         System.out.println("hot-master test");
         System.out.println("hot-master test");
